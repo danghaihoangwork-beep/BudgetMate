@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="bm_bg">#FF0A1128</color>
+    <color name="bm_bg_ink">#FF080E22</color>
+    <color name="bm_surface">#FF111827</color>
+    <color name="bm_surface_2">#FF1E293B</color>
+    <color name="bm_surface_3">#FF172033</color>
+    <color name="bm_hairline">#FF1F2A44</color>
+    <color name="bm_hairline_2">#FF26344F</color>
+
+    <color name="bm_text">#FFFFFFFF</color>
+    <color name="bm_text_dim">#FFE5E7EB</color>
+    <color name="bm_muted">#FF9CA3AF</color>
+    <color name="bm_muted_2">#FF6B7894</color>
+    <color name="bm_muted_3">#FF3D4F6B</color>
+
+    <color name="bm_gold">#FFD4AF37</color>
+    <color name="bm_gold_dim">#CCD4AF37</color>
+    <color name="bm_gold_glow">#33D4AF37</color>
+    <color name="bm_gold_press">#22D4AF37</color>
+    <color name="bm_gold_hairline">#88D4AF37</color>
+    <color name="bm_teal">#FF14B8A6</color>
+
+    <color name="bm_income">#FF34D399</color>
+    <color name="bm_income_tint">#3334D399</color>
+    <color name="bm_expense">#FFF87171</color>
+    <color name="bm_expense_hi">#FFFCA5A5</color>
+
+    <color name="bm_ink">#FF0A1128</color>
+    <color name="bm_white_inner_highlight">#0AFFFFFF</color>
+    <color name="bm_ripple_light">#1AFFFFFF</color>
+    <color name="bm_gold_tint_8">#14D4AF37</color>
+    <color name="bm_expense_tint">#1AF87171</color>
+
+    <color name="ui_solid_calendar_bg">#111827</color>
+    <color name="ui_muted_gray">#9CA3AF</color>
+</resources>

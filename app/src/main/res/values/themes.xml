@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.BudgetMate" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#D4AF37</item>
+        <item name="colorPrimaryVariant">#0A1128</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#14B8A6</item>
+        <item name="colorSecondaryVariant">#1E293B</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="android:statusBarColor">#0A1128</item>
+    </style>
+
+    <style name="NumPadButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="backgroundTint">#111827</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="CalendarDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="background">@color/ui_solid_calendar_bg</item>
+        <item name="colorSurface">@color/ui_solid_calendar_bg</item>
+
+        <item name="colorPrimary">#D4AF37</item>
+        <item name="colorAccent">#D4AF37</item>
+
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@color/ui_muted_gray</item>
+
+        <item name="buttonBarPositiveButtonStyle">@style/CalendarDialogButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/CalendarDialogButtonStyle</item>
+    </style>
+
+    <style name="CalendarDialogButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">#D4AF37</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CustomDatePickerTheme" parent="CalendarDialogTheme">
+    </style>
+
+    <style name="BMKeypadDigit" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/bg_keypad_btn</item>
+        <item name="backgroundTint">@null</item>
+        <item name="rippleColor">@null</item>
+        <item name="android:textColor">@color/bm_text</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@animator/keypad_press</item>
+    </style>
+
+</resources>

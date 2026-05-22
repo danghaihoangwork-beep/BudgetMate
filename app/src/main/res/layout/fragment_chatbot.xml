@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bm_bg">
+
+    <LinearLayout
+        android:id="@+id/layout_chat_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp"
+        android:background="@color/bm_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ONLINE · RECEIPT SCANNER READY"
+            android:textColor="@color/bm_teal"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.14" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BudgetMate AI"
+            android:textColor="@color/bm_text"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="2dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bm_hairline"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat_messages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_chat_header"
+        android:layout_above="@+id/layout_bottom_bar"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        android:overScrollMode="never" />
+
+    <LinearLayout
+        android:id="@id/layout_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="16dp"
+        android:background="@color/bm_bg">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:layout_marginBottom="10dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button android:id="@+id/chip_boba" android:layout_width="wrap_content" android:layout_height="36dp" android:text="🧋 Boba $5" android:textAllCaps="false" android:textColor="@color/bm_text_dim" android:textSize="12sp" android:background="@drawable/bg_chip_idle" android:layout_marginEnd="8dp" />
+                <Button android:id="@+id/chip_lunch" android:layout_width="wrap_content" android:layout_height="36dp" android:text="🍜 Lunch $15" android:textAllCaps="false" android:textColor="@color/bm_text_dim" android:textSize="12sp" android:background="@drawable/bg_chip_idle" android:layout_marginEnd="8dp" />
+                <Button android:id="@+id/chip_uber" android:layout_width="wrap_content" android:layout_height="36dp" android:text="🚗 Uber $20" android:textAllCaps="false" android:textColor="@color/bm_text_dim" android:textSize="12sp" android:background="@drawable/bg_chip_idle" android:layout_marginEnd="8dp" />
+                <Button android:id="@+id/chip_salary" android:layout_width="wrap_content" android:layout_height="36dp" android:text="💰 Salary $200" android:textAllCaps="false" android:textColor="@color/bm_text_dim" android:textSize="12sp" android:background="@drawable/bg_chip_idle" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_chat_input"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:id="@+id/btn_chat_camera_scan"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@android:drawable/ic_menu_camera"
+                app:tint="@color/bm_muted"
+                android:layout_marginEnd="10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Scan receipt" />
+
+            <EditText
+                android:id="@+id/edt_chat_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ask AI or log expense..."
+                android:textColorHint="@color/bm_muted_3"
+                android:textColor="@color/bm_text"
+                android:textSize="14sp"
+                android:background="@null"
+                android:inputType="text" />
+
+            <FrameLayout
+                android:id="@+id/btn_chat_send"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_send"
+                    app:tint="@color/bm_gold"
+                    android:contentDescription="Send" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

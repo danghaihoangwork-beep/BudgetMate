@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:paddingVertical="6dp">
+
+    <FrameLayout
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:background="@drawable/bg_icon_tile"
+        android:layout_marginEnd="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="🤖"
+            android:textSize="13sp" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/bg_bubble_ai"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_chat_text_ai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Got it! Logged $15.00 under Entertainment. Your remaining monthly budget for this category is $45.00."
+            android:textColor="@color/bm_text_dim"
+            android:textSize="14sp"
+            android:lineSpacingExtra="3dp" />
+    </LinearLayout>
+
+</LinearLayout>

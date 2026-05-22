@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#111827"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:layout_marginStart="14dp" android:layout_marginEnd="14dp"
+        android:layout_marginTop="8dp" android:layout_marginBottom="16dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="📈" android:textSize="16sp" android:layout_marginEnd="8dp"/>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Tap any stock for candlestick chart" android:textColor="#FFFFFF" android:textSize="13sp" android:textStyle="bold"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="30-day OHLC · AlphaVantage API" android:textColor="#3D4F6B" android:textSize="11sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Global Markets" android:textColor="#D4AF37" android:textStyle="bold" android:layout_marginStart="14dp" android:layout_marginBottom="8dp"/>
+
+    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:paddingStart="14dp" android:paddingEnd="14dp">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+            <LinearLayout android:layout_width="140dp" android:layout_height="wrap_content" android:orientation="vertical" android:background="#111827" android:padding="12dp" android:layout_marginEnd="12dp">
+                <TextView android:text="NIKKEI 225" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold"/>
+                <TextView android:text="38,537.4" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                <TextView android:text="+1.1% ▲" android:textColor="#34D399" android:textSize="12sp" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="140dp" android:layout_height="wrap_content" android:orientation="vertical" android:background="#111827" android:padding="12dp" android:layout_marginEnd="12dp">
+                <TextView android:text="FTSE 100" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold"/>
+                <TextView android:text="8,420.2" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                <TextView android:text="-0.3% ▼" android:textColor="#F87171" android:textSize="12sp" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="140dp" android:layout_height="wrap_content" android:orientation="vertical" android:background="#111827" android:padding="12dp">
+                <TextView android:text="DAX" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold"/>
+                <TextView android:text="18,732.1" android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold" android:layout_marginTop="4dp"/>
+                <TextView android:text="+0.7% ▲" android:textColor="#34D399" android:textSize="12sp" android:layout_marginTop="2dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>

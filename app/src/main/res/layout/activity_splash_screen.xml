@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A1128"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_splash_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BudgetMate"
+            android:textColor="#D4AF37"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Premium Finance Assistant"
+            android:textColor="#3D4F6B"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+
+        <ProgressBar
+            android:id="@+id/splash_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="160dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="#D4AF37" />
+
+    </LinearLayout>
+</RelativeLayout>

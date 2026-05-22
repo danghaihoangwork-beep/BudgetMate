@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="14dp"
+    android:layout_marginBottom="16dp">
+
+    <ImageView
+        android:id="@+id/iv_featured_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:scaleType="centerCrop"
+        android:background="@color/bm_surface" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_news_gradient_overlay" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_featured_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BLOOMBERG"
+                android:textColor="@color/bm_gold"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08" />
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="3dp"
+                android:background="@drawable/bg_meta_dot"
+                android:layout_marginHorizontal="6dp" />
+
+            <TextView
+                android:id="@+id/tv_featured_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2h ago"
+                android:textColor="@color/bm_muted"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_featured_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fed Signals High Interest Rates Will Persist Longer Than Anticipated"
+            android:textColor="@color/bm_text"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="6dp"
+            android:maxLines="2"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+</FrameLayout>

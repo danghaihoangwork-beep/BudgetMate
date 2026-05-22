@@ -1,0 +1,179 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A1128">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tv_amount_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#34D399"
+            android:textSize="52sp"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:paddingBottom="8dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#1A233D"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#111827"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅"
+                android:textSize="16sp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/tv_selected_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#E0E6ED"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/btn_prev_day"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_media_rew"
+                android:padding="6dp" />
+
+            <ImageView
+                android:id="@+id/btn_next_day"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_media_ff"
+                android:padding="6dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt_title"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Income description"
+            android:textColorHint="#3D4F6B"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:background="#111827"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="12dp"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textColor="#34D399"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal" />
+
+        <EditText
+            android:id="@+id/edt_note"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Note (optional)"
+            android:textColorHint="#3D4F6B"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:background="#111827"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:inputType="text" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="4"
+            android:layout_marginBottom="16dp">
+
+            <Button android:id="@+id/btn_1" android:text="1"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_2" android:text="2"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_3" android:text="3"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_4" android:text="4"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_5" android:text="5"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_6" android:text="6"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_7" android:text="7"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_8" android:text="8"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_9" android:text="9"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_del" android:text="⌫"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btn_0" android:text="0"
+                style="@style/NumPadButton"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content" />
+
+            <Button android:id="@+id/btn_save" android:text="✓ Save"
+                android:layout_columnWeight="1" android:layout_rowWeight="1"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:backgroundTint="#34D399"
+                android:textColor="#0A1128"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:stateListAnimator="@null"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>

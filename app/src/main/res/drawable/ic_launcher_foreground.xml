@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ════════════════════════════════════════
+         LAYER 1 · Drop shadow halo
+         Slightly larger, slightly offset, very soft.
+         Anchors the coin onto the background.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,57 m-33,0 a33,33 0 1,0 66,0 a33,33 0 1,0 -66,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="54"
+                android:centerY="58"
+                android:gradientRadius="34">
+                <item android:offset="0.65" android:color="#80000000" />
+                <item android:offset="0.92" android:color="#30000000" />
+                <item android:offset="1.00" android:color="#00000000" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 2 · Coin outer edge (3D side wall)
+         Dark bronze with a strong top→bottom linear ramp.
+         This is the thickness of the coin you can "see" from
+         the bevel between the rim and the background.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,54 m-31.5,0 a31.5,31.5 0 1,0 63,0 a31.5,31.5 0 1,0 -63,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="32"
+                android:startY="26"
+                android:endX="76"
+                android:endY="84">
+                <item android:offset="0.00" android:color="#FFB8801E" />
+                <item android:offset="0.30" android:color="#FF6E4B0E" />
+                <item android:offset="0.65" android:color="#FF3A2706" />
+                <item android:offset="1.00" android:color="#FF1A1003" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 3 · Coin top edge specular ring
+         A thin lighter rim at the absolute top of the
+         coin's edge — catches the imaginary key light.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,54 m-30.5,0 a30.5,30.5 0 1,0 61,0 a30.5,30.5 0 1,0 -61,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="54"
+                android:startY="23.5"
+                android:endX="54"
+                android:endY="40">
+                <item android:offset="0.00" android:color="#FFFFEFB5" />
+                <item android:offset="0.40" android:color="#FFE8C162" />
+                <item android:offset="1.00" android:color="#0066410B" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 4 · Coin face — main body
+         Radial gradient simulating a polished gold disc.
+         Bright apex sits up and to the left (light source from
+         top-right of background hitting curved face).
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,54 m-28,0 a28,28 0 1,0 56,0 a28,28 0 1,0 -56,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="44"
+                android:centerY="42"
+                android:gradientRadius="44">
+                <item android:offset="0.00" android:color="#FFFFF1B8" />
+                <item android:offset="0.20" android:color="#FFFCE08A" />
+                <item android:offset="0.45" android:color="#FFE8B848" />
+                <item android:offset="0.70" android:color="#FFB07814" />
+                <item android:offset="1.00" android:color="#FF5C3D08" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 5 · Inner bevel ring (lighter)
+         Sits just inside the face's outer perimeter, creating
+         the "raised lip" you see on minted coins.
+         Drawn as a slightly smaller filled circle ramp that
+         brightens at the top.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,54 m-25.5,0 a25.5,25.5 0 1,0 51,0 a25.5,25.5 0 1,0 -51,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="50"
+                android:centerY="46"
+                android:gradientRadius="34">
+                <item android:offset="0.00" android:color="#FFFFE48F" />
+                <item android:offset="0.55" android:color="#FFD9A23A" />
+                <item android:offset="1.00" android:color="#FF7E5610" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 6 · Recessed inner field (where the B sits)
+         Slightly darker than the bevel ring — this is the
+         engraved well. Gentle gradient so the lettering reads.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,54 m-22,0 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="46"
+                android:centerY="44"
+                android:gradientRadius="32">
+                <item android:offset="0.00" android:color="#FFE0B85A" />
+                <item android:offset="0.55" android:color="#FFA67718" />
+                <item android:offset="1.00" android:color="#FF5A3B08" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 7 · Inner-field inset shadow (top edge)
+         A thin dark crescent at the top of the recess — sells
+         the depth, like the letter is actually pressed inward.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M54,54 m-22,0 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="54"
+                android:startY="32"
+                android:endX="54"
+                android:endY="60">
+                <item android:offset="0.00" android:color="#80000000" />
+                <item android:offset="0.45" android:color="#20000000" />
+                <item android:offset="1.00" android:color="#00000000" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 8 · Letter "B" — engraved shadow
+         Drawn slightly down/right of the actual B with a
+         dark fill. Reads as an inset shadow beneath the
+         raised letter face that follows.
+         ════════════════════════════════════════ -->
+    <path
+        android:fillType="evenOdd"
+        android:pathData="
+            M45.5,39
+            L55,39
+            C61,39 61,55 55,55
+            L45.5,55 Z
+            M45.5,55
+            L55,55
+            C63,55 63,71 55,71
+            L45.5,71 Z
+            M51,43
+            L53,43
+            C57,43 57,51 53,51
+            L51,51 Z
+            M51,59
+            L54,59
+            C58,59 58,67 54,67
+            L51,67 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="50"
+                android:startY="40"
+                android:endX="58"
+                android:endY="70">
+                <item android:offset="0.00" android:color="#C0301E04" />
+                <item android:offset="1.00" android:color="#FF1A0F02" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 9 · Letter "B" — raised face
+         The actual letter, positioned one unit up & left of the
+         shadow above. Linear gradient (bright top → bronze bottom)
+         makes it read as an embossed, three-dimensional element.
+         ════════════════════════════════════════ -->
+    <path
+        android:fillType="evenOdd"
+        android:pathData="
+            M44.5,38
+            L54,38
+            C60,38 60,54 54,54
+            L44.5,54 Z
+            M44.5,54
+            L54,54
+            C62,54 62,70 54,70
+            L44.5,70 Z
+            M50,42
+            L52,42
+            C56,42 56,50 52,50
+            L50,50 Z
+            M50,58
+            L53,58
+            C57,58 57,66 53,66
+            L50,66 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="44"
+                android:startY="34"
+                android:endX="62"
+                android:endY="72">
+                <item android:offset="0.00" android:color="#FFFFF1B0" />
+                <item android:offset="0.30" android:color="#FFFAD568" />
+                <item android:offset="0.65" android:color="#FFC58E20" />
+                <item android:offset="1.00" android:color="#FF7A5108" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 10 · Letter "B" — top edge highlight
+         Thin bright sliver along the top of the B, sells
+         the embossed/3D illusion. Drawn as a strip-shaped
+         path that follows just the top contour.
+         ════════════════════════════════════════ -->
+    <path
+        android:pathData="
+            M44.5,38
+            L54,38
+            C58,38 60,40.5 60.5,43
+            C58,40 55.5,39.5 54,39.5
+            L44.5,39.5 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="50"
+                android:startY="38"
+                android:endX="50"
+                android:endY="40.5">
+                <item android:offset="0.00" android:color="#E0FFF8DC" />
+                <item android:offset="1.00" android:color="#20FFE08A" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 11 · Currency bar #1 (shadow)
+         Two thin vertical bars through the B make it read
+         as a fiat-currency mark (₿ / ¥ style). Each bar is
+         painted twice: a dark "engraved" pass below, then
+         the bright metal pass on top.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M46.6,32.5 L48.6,32.5 L48.6,76.5 L46.6,76.5 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="47.6"
+                android:startY="32"
+                android:endX="47.6"
+                android:endY="77">
+                <item android:offset="0.00" android:color="#A0301E04" />
+                <item android:offset="1.00" android:color="#FF150A01" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- LAYER 12 · Currency bar #1 (face) -->
+    <path android:pathData="M46,32 L48,32 L48,76 L46,76 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="47"
+                android:startY="32"
+                android:endX="47"
+                android:endY="76">
+                <item android:offset="0.00" android:color="#FFFFF6CC" />
+                <item android:offset="0.30" android:color="#FFFCDE82" />
+                <item android:offset="0.70" android:color="#FFD09826" />
+                <item android:offset="1.00" android:color="#FF8A5C0C" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- LAYER 13 · Currency bar #2 (shadow) -->
+    <path android:pathData="M52.6,32.5 L54.6,32.5 L54.6,76.5 L52.6,76.5 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="53.6"
+                android:startY="32"
+                android:endX="53.6"
+                android:endY="77">
+                <item android:offset="0.00" android:color="#A0301E04" />
+                <item android:offset="1.00" android:color="#FF150A01" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- LAYER 14 · Currency bar #2 (face) -->
+    <path android:pathData="M52,32 L54,32 L54,76 L52,76 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="53"
+                android:startY="32"
+                android:endX="53"
+                android:endY="76">
+                <item android:offset="0.00" android:color="#FFFFF6CC" />
+                <item android:offset="0.30" android:color="#FFFCDE82" />
+                <item android:offset="0.70" android:color="#FFD09826" />
+                <item android:offset="1.00" android:color="#FF8A5C0C" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- ════════════════════════════════════════
+         LAYER 15 · Top-left specular highlight
+         A rotated white ellipse, very low opacity, sweeps
+         across the upper-left arc of the coin face — the
+         single most important detail for "polished metal".
+         ════════════════════════════════════════ -->
+    <group
+        android:pivotX="42"
+        android:pivotY="38"
+        android:rotation="-32">
+        <path android:pathData="M42,38 m-15,0 a15,5 0 1,0 30,0 a15,5 0 1,0 -30,0 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="radial"
+                    android:centerX="42"
+                    android:centerY="38"
+                    android:gradientRadius="15">
+                    <item android:offset="0.00" android:color="#B0FFFFFF" />
+                    <item android:offset="0.55" android:color="#40FFFFFF" />
+                    <item android:offset="1.00" android:color="#00FFFFFF" />
+                </gradient>
+            </aapt:attr>
+        </path>
+    </group>
+
+    <!-- ════════════════════════════════════════
+         LAYER 16 · Bottom-right deep shadow
+         The opposite of the specular: a rotated dark ellipse
+         in the bottom-right of the face, completing the
+         direction-of-light story.
+         ════════════════════════════════════════ -->
+    <group
+        android:pivotX="68"
+        android:pivotY="68"
+        android:rotation="-32">
+        <path android:pathData="M68,68 m-13,0 a13,4 0 1,0 26,0 a13,4 0 1,0 -26,0 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:type="radial"
+                    android:centerX="68"
+                    android:centerY="68"
+                    android:gradientRadius="13">
+                    <item android:offset="0.00" android:color="#80000000" />
+                    <item android:offset="0.55" android:color="#30000000" />
+                    <item android:offset="1.00" android:color="#00000000" />
+                </gradient>
+            </aapt:attr>
+        </path>
+    </group>
+
+    <!-- ════════════════════════════════════════
+         LAYER 17 · Sub-pixel sparkle
+         Tiny white dot at the brightest specular point —
+         the "glint" that gives expensive UI its sheen.
+         ════════════════════════════════════════ -->
+    <path android:pathData="M40,36 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0 Z"
+        android:fillColor="#E0FFFFFF" />
+    <path android:pathData="M40,36 m-0.6,0 a0.6,0.6 0 1,0 1.2,0 a0.6,0.6 0 1,0 -1.2,0 Z"
+        android:fillColor="#FFFFFFFF" />
+</vector>

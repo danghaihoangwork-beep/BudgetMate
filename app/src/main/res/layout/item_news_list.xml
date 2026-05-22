@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="12dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_news_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REUTERS"
+                android:textColor="@color/bm_muted_2"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.06" />
+
+            <View
+                android:layout_width="2.5dp"
+                android:layout_height="2.5dp"
+                android:background="@drawable/bg_meta_dot"
+                android:layout_marginHorizontal="6dp" />
+
+            <TextView
+                android:id="@+id/tv_news_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5h ago"
+                android:textColor="@color/bm_muted_2"
+                android:textSize="9sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Global tech stocks see $4B outflow amid macroeconomic policy tightening fears"
+            android:textColor="@color/bm_text_dim"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_news_thumbnail"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="centerCrop"
+        android:background="@color/bm_surface"
+        android:src="@android:drawable/ic_menu_gallery" />
+
+</LinearLayout>

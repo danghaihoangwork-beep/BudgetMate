@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card_surface"
+    android:padding="14dp"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NET FLOW · MONTH"
+                android:textColor="@color/bm_muted"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.14" />
+            <TextView
+                android:id="@+id/tv_net_flow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+$0.00"
+                android:textColor="@color/bm_text"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:baselineAligned="false">
+            <View android:layout_width="6dp" android:layout_height="9dp"  android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="15dp" android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="11dp" android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="20dp" android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="14dp" android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="24dp" android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="18dp" android:background="@drawable/bg_sparkbar_dim" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="29dp" android:background="@drawable/bg_sparkbar_active" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="22dp" android:background="@drawable/bg_sparkbar_active" android:layout_marginEnd="4dp" />
+            <View android:layout_width="6dp" android:layout_height="32dp" android:background="@drawable/bg_sparkbar_active" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bm_hairline_2"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AVG / DAY"
+                android:textColor="@color/bm_muted"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_avg_per_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0"
+                android:textColor="@color/bm_text"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/bm_hairline_2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BURN RATE"
+                android:textColor="@color/bm_muted"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_burn_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%"
+                android:textColor="@color/bm_expense_hi"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/bm_hairline_2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SAVED"
+                android:textColor="@color/bm_muted"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_saved"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0"
+                android:textColor="@color/bm_income"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:layout_marginTop="3dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

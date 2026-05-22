@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_stock_card"
+    android:padding="14dp"
+    android:layout_margin="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_stock_ticker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="NVDA"
+            android:textColor="@color/bm_text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_stock_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+4.2%"
+            android:textColor="@color/bm_income"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:background="@drawable/bg_stock_trend_up"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_stock_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NVIDIA Corp."
+        android:textColor="@color/bm_muted"
+        android:textSize="11sp"
+        android:layout_marginTop="2dp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="10dp">
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_sparkline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_stock_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="$943.20"
+        android:textColor="@color/bm_text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace" />
+
+</LinearLayout>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bm_bg"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="96dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ANALYTICS"
+                    android:textColor="@color/bm_muted"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Insights"
+                    android:textColor="@color/bm_text"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.025"
+                    android:layout_marginTop="2dp" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_export_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="↓  EXPORT"
+                android:textColor="@color/bm_ink"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black"
+                app:backgroundTint="@color/bm_gold"
+                app:cornerRadius="10dp"
+                android:minHeight="36dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:elevation="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="14dp">
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggle_group_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:checkedButton="@+id/btn_monthly">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_monthly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monthly"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/bm_hairline"
+                    android:textColor="@color/bm_gold" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_annually"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Annual"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/bm_hairline"
+                    android:textColor="@color/bm_gold" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinner_month_stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/bm_gold"
+                android:layout_marginEnd="6dp" />
+
+            <Spinner
+                android:id="@+id/spinner_year_stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/bm_gold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_surface"
+                android:padding="14dp"
+                android:layout_marginEnd="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="↑ INCOME"
+                    android:textColor="@color/bm_income"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+                <TextView
+                    android:id="@+id/tv_total_income_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$0"
+                    android:textColor="@color/bm_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_surface"
+                android:padding="14dp"
+                android:layout_marginStart="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="↓ EXPENSES"
+                    android:textColor="@color/bm_expense"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.14" />
+                <TextView
+                    android:id="@+id/tv_total_expense_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$0"
+                    android:textColor="@color/bm_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INCOME VS EXPENSE COMPARISON"
+            android:textColor="@color/bm_muted"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.14"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_surface"
+            android:padding="12dp">
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/bar_chart_compare"
+                android:layout_width="match_parent"
+                android:layout_height="260dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CASHFLOW TREND LINE"
+            android:textColor="@color/bm_muted"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.14"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_surface"
+            android:padding="12dp">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart_trend"
+                android:layout_width="match_parent"
+                android:layout_height="260dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CATEGORY BREAKDOWN (EXPENSE VS INCOME)"
+            android:textColor="@color/bm_muted"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.14"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_card_surface"
+            android:padding="12dp"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EXPENSES"
+                    android:textColor="@color/bm_expense"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pie_chart_expense"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/bm_hairline_2"
+                android:layout_marginHorizontal="8dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INCOME"
+                    android:textColor="@color/bm_income"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="6dp"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pie_chart_income"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPENDING HABITS RADAR"
+            android:textColor="@color/bm_muted"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.14"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_surface"
+            android:padding="12dp">
+            <com.github.mikephil.charting.charts.RadarChart
+                android:id="@+id/radar_chart_habits"
+                android:layout_width="match_parent"
+                android:layout_height="260dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp">
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@drawable/ic_ai_spark"
+                android:layout_marginEnd="6dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI FINANCIAL ADVISOR"
+                android:textColor="@color/bm_gold"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.14" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_ai_insight"
+            android:padding="14dp">
+            <TextView
+                android:id="@+id/tv_ai_insight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Analyzing database..."
+                android:textColor="@color/bm_text_dim"
+                android:textSize="13sp"
+                android:lineSpacingMultiplier="1.45" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
