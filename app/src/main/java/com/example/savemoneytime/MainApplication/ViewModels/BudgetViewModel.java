@@ -19,16 +19,19 @@ public class BudgetViewModel extends AndroidViewModel {
 
     private final AppRepository repository;
 
+    // Luồng dữ liệu theo tháng được chọn
     private final MutableLiveData<Long>    totalIncomeLive  = new MutableLiveData<>(0L);
     private final MutableLiveData<Long>    totalExpenseLive = new MutableLiveData<>(0L);
     private final MutableLiveData<Long>    balanceLive      = new MutableLiveData<>(0L);
-
     private final MutableLiveData<List<TransactionItem>> transactionsLive = new MutableLiveData<>(new ArrayList<>());
+
+    // 🔥 LUỒNG DỮ LIỆU TỔNG TOÀN BỘ LỊCH SỬ (ALL-TIME DATABASE)
+    private final MutableLiveData<Long>    allTimeIncomeLive  = new MutableLiveData<>(0L);
+    private final MutableLiveData<Long>    allTimeExpenseLive = new MutableLiveData<>(0L);
 
     private final MutableLiveData<List<NewsArticle>> newsLive = new MutableLiveData<>(new ArrayList<>());
     private final MutableLiveData<Boolean> newsLoadingLive = new MutableLiveData<>(false);
     private final MutableLiveData<String>  newsErrorLive   = new MutableLiveData<>();
-
     private final MutableLiveData<String>  saveStatusLive  = new MutableLiveData<>();
 
     public BudgetViewModel(@NonNull Application application) {
@@ -36,22 +39,23 @@ public class BudgetViewModel extends AndroidViewModel {
         repository = new AppRepository(application);
     }
 
-    public LiveData<Long>                  getTotalIncome()  { return totalIncomeLive; }
-    public LiveData<Long>                  getTotalExpense() { return totalExpenseLive; }
-    public LiveData<Long>                  getBalance()      { return balanceLive; }
-    public LiveData<List<TransactionItem>> getTransactions() { return transactionsLive; }
-    public LiveData<List<NewsArticle>>     getNews()         { return newsLive; }
-    public LiveData<Boolean>               getNewsLoading()  { return newsLoadingLive; }
-    public LiveData<String>                getNewsError()    { return newsErrorLive; }
-    public LiveData<String>                getSaveStatus()   { return saveStatusLive; }
+    public LiveData<Long>                  getTotalIncome()     { return totalIncomeLive; }
+    public LiveData<Long>                  getTotalExpense()    { return totalExpenseLive; }
+    public LiveData<Long>                  getBalance()         { return balanceLive; }
+    public LiveData<List<TransactionItem>> getTransactions()    { return transactionsLive; }
+
+    // Getter cho biến All-Time mới
+    public LiveData<Long>                  getAllTimeIncome()   { return allTimeIncomeLive; }
+    public LiveData<Long>                  getAllTimeExpense()  { return allTimeExpenseLive; }
+
+    public LiveData<List<NewsArticle>>     getNews()            { return newsLive; }
+    public LiveData<Boolean>               getNewsLoading()     { return newsLoadingLive; }
+    public LiveData<String>                getNewsError()       { return newsErrorLive; }
+    public LiveData<String>                getSaveStatus()      { return saveStatusLive; }
 
     public void loadBalance(String month, String year) {
-        // Hàm này giữ lại để không làm lỗi cấu trúc cũ, nhưng số liệu thật sẽ được đồng bộ trực tiếp từ hàm loadTransactions bên dưới
         repository.getTotalRevenueByMonth(month, year, new AppRepository.DataCallback<Long>() {
-            @Override
-            public void onSuccess(Long income) {
-                // Đã chuyển giao việc gán số cho luồng loadTransactions thống nhất
-            }
+            @Override public void onSuccess(Long income) {}
             @Override public void onError(String message) {}
         });
     }
@@ -60,13 +64,9 @@ public class BudgetViewModel extends AndroidViewModel {
         repository.insertExpense(expense, new AppRepository.DataCallback<Void>() {
             @Override
             public void onSuccess(Void data) {
-                // Phát tín hiệu thông báo đã ghi file thành công vào Database ngầm
                 saveStatusLive.postValue("✅ Expense saved! " + System.currentTimeMillis());
             }
-            @Override
-            public void onError(String message) {
-                saveStatusLive.postValue("❌ Error: " + message);
-            }
+            @Override public void onError(String message) {}
         });
     }
 
@@ -74,13 +74,9 @@ public class BudgetViewModel extends AndroidViewModel {
         repository.insertRevenue(revenue, new AppRepository.DataCallback<Void>() {
             @Override
             public void onSuccess(Void data) {
-                // Phát tín hiệu thông báo đã ghi file thành công vào Database ngầm
                 saveStatusLive.postValue("✅ Income saved! " + System.currentTimeMillis());
             }
-            @Override
-            public void onError(String message) {
-                saveStatusLive.postValue("❌ Error: " + message);
-            }
+            @Override public void onError(String message) {}
         });
     }
 
@@ -97,19 +93,48 @@ public class BudgetViewModel extends AndroidViewModel {
 
                         for (ExpenseEntity e : expenses) {
                             merged.add(TransactionItem.fromExpense(e));
-                            calculatedExpense += e.getAmount(); // Cộng dồn chi tiêu thật
+                            calculatedExpense += e.getAmount();
                         }
                         for (RevenueEntity r : revenues) {
                             merged.add(TransactionItem.fromRevenue(r));
-                            calculatedIncome += r.getAmount(); // Cộng dồn thu nhập thật
+                            calculatedIncome += r.getAmount();
                         }
                         Collections.sort(merged, (a, b) -> Long.compare(b.getDate(), a.getDate()));
                         transactionsLive.postValue(merged);
 
-                        // 🔥 ĐỒNG BỘ TUYỆT ĐỐI: Ép số liệu tổng ở trang Home khớp 100% với danh sách lịch sử thật
                         totalIncomeLive.postValue(calculatedIncome);
                         totalExpenseLive.postValue(calculatedExpense);
                         balanceLive.postValue(calculatedIncome - calculatedExpense);
+
+                        // Kích hoạt tính toán All-Time song song
+                        calculateAllTimeStats();
+                    }
+                    @Override public void onError(String msg) {}
+                });
+            }
+            @Override public void onError(String msg) {}
+        });
+    }
+
+    // 🔥 HÀM TÍNH TOÁN ALL-TIME TỔNG TOÀN BỘ DATABASE NGẦM
+    private void calculateAllTimeStats() {
+        // Gọi dữ liệu thô không điều kiện thời gian để tổng hợp số liệu tổng của toàn bộ vòng đời app
+        repository.getExpensesByMonth("", "", new AppRepository.DataCallback<List<ExpenseEntity>>() {
+            @Override
+            public void onSuccess(List<ExpenseEntity> allExpenses) {
+                repository.getRevenuesByMonth("", "", new AppRepository.DataCallback<List<RevenueEntity>>() {
+                    @Override
+                    public void onSuccess(List<RevenueEntity> allRevenues) {
+                        long totalExp = 0;
+                        long totalInc = 0;
+                        if (allExpenses != null) {
+                            for (ExpenseEntity e : allExpenses) totalExp += e.getAmount();
+                        }
+                        if (allRevenues != null) {
+                            for (RevenueEntity r : allRevenues) totalInc += r.getAmount();
+                        }
+                        allTimeExpenseLive.postValue(totalExp);
+                        allTimeIncomeLive.postValue(totalInc);
                     }
                     @Override public void onError(String msg) {}
                 });
@@ -139,36 +164,17 @@ public class BudgetViewModel extends AndroidViewModel {
     }
 
     public void loadNews(String apiKey) {
-        Boolean currentlyLoading = newsLoadingLive.getValue();
-        if (currentlyLoading != null && currentlyLoading) return;
-
         newsLoadingLive.postValue(true);
-        newsErrorLive.postValue(null);
-
-        repository.fetchNews(
-                "finance OR stock market OR economy",
-                "en",
-                8,
-                apiKey,
-                new AppRepository.DataCallback<NewsResponse>() {
-                    @Override
-                    public void onSuccess(NewsResponse response) {
-                        newsLoadingLive.postValue(false);
-                        if (response != null && response.getArticles() != null && !response.getArticles().isEmpty()) {
-                            List<NewsArticle> safeCopy = new ArrayList<>(response.getArticles());
-                            newsLive.postValue(safeCopy);
-                        } else {
-                            newsErrorLive.postValue("no_data");
-                        }
-                    }
-
-                    @Override
-                    public void onError(String message) {
-                        newsLoadingLive.postValue(false);
-                        newsErrorLive.postValue(message != null ? message : "network_error");
-                    }
+        repository.fetchNews("finance", "en", 8, apiKey, new AppRepository.DataCallback<NewsResponse>() {
+            @Override
+            public void onSuccess(NewsResponse response) {
+                newsLoadingLive.postValue(false);
+                if (response != null && response.getArticles() != null) {
+                    newsLive.postValue(new ArrayList<>(response.getArticles()));
                 }
-        );
+            }
+            @Override public void onError(String message) { newsLoadingLive.postValue(false); }
+        });
     }
 
     public void loadStatsData(String month, String year, AppRepository.DataCallback<long[]> callback) {

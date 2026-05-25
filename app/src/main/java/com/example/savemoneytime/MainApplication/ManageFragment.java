@@ -41,12 +41,16 @@ public class ManageFragment extends Fragment {
     private TextView filterAllCount, filterExpensesCount, filterIncomeCount;
     private TextView tvCurrentMonthTitle;
 
-    private int currentFilterMode = 0; // 0: All, 1: Expenses, 2: Income
+    private int currentFilterMode = 0;
     private List<TransactionItem> rawListFromDb = new ArrayList<>();
 
     private int selectedMonth;
     private int selectedYear;
     private String currentMonthStr, currentYearStr;
+
+    // Các biến lưu trữ All-Time nhận từ ViewModel
+    private long globalAllTimeIncome = 0;
+    private long globalAllTimeExpense = 0;
 
     private final String[] MONTH_LABELS = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
@@ -208,10 +212,21 @@ public class ManageFragment extends Fragment {
     }
 
     private void observeViewModel() {
+        // Lắng nghe dữ liệu All-Time đổ về từ ViewModel
+        viewModel.getAllTimeIncome().observe(getViewLifecycleOwner(), income -> {
+            globalAllTimeIncome = income != null ? income : 0;
+            processAndGroupData(rawListFromDb);
+        });
+
+        viewModel.getAllTimeExpense().observe(getViewLifecycleOwner(), expense -> {
+            globalAllTimeExpense = expense != null ? expense : 0;
+            processAndGroupData(rawListFromDb);
+        });
+
         viewModel.getTransactions().observe(getViewLifecycleOwner(), items -> {
             if (items != null) {
-                rawListFromDb = items;
-                processAndGroupData(items);
+                rawListFromDb = new ArrayList<>(items);
+                processAndGroupData(rawListFromDb);
             }
         });
         refreshBalanceData();
@@ -246,7 +261,8 @@ public class ManageFragment extends Fragment {
 
         updateFilterPillsUI(expCount, incCount);
 
-        DashboardItem dashboard = new DashboardItem(totalIncome, totalExpense);
+        // 🔥 TRUYỀN CẢ DATA THÁNG VÀ DATA ALL-TIME VÀO DASHBOARD CARD
+        DashboardItem dashboard = new DashboardItem(totalIncome, totalExpense, globalAllTimeIncome, globalAllTimeExpense);
         flattenedList.add(dashboard);
 
         Map<String, List<TransactionItem>> groupedMap = new LinkedHashMap<>();
@@ -270,12 +286,11 @@ public class ManageFragment extends Fragment {
             flattenedList.addAll(entry.getValue());
         }
 
-        adapter.setItems(flattenedList);
+        if (adapter != null) {
+            adapter.setItems(flattenedList);
+        }
     }
 
-    // ─────────────────────────────────────────────────────────────
-    // ADAPTER ĐỒNG BỘ TRỌN VẸN
-    // ─────────────────────────────────────────────────────────────
     private class AdvancedTransactionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private static final int TYPE_DASHBOARD   = 0;
@@ -283,14 +298,16 @@ public class ManageFragment extends Fragment {
         private static final int TYPE_TRANSACTION = 2;
 
         private final List<Object> dataset = new ArrayList<>();
-
-        // 🔥 FIX CHÍ MẠNG: Ép cứng chuẩn Mỹ (Locale.US) để ép xuất hiện dấu phẩy (,) hàng nghìn
         private final DecimalFormat formatter = new DecimalFormat("#,##0", new DecimalFormatSymbols(Locale.US));
 
         public void setItems(List<Object> newList) {
-            dataset.clear();
-            dataset.addAll(newList);
-            notifyDataSetChanged();
+            if (rvTransactions != null) {
+                rvTransactions.post(() -> {
+                    dataset.clear();
+                    dataset.addAll(newList);
+                    notifyDataSetChanged();
+                });
+            }
         }
 
         @Override
@@ -324,19 +341,20 @@ public class ManageFragment extends Fragment {
             if (holder instanceof DashboardVH) {
                 DashboardVH dvh = (DashboardVH) holder;
                 DashboardItem db = (DashboardItem) data;
-                long netFlow = db.income - db.expense;
 
+                // 1. Hiển thị thông số của tháng được chọn (This Month)
+                long netFlow = db.income - db.expense;
                 dvh.tvNetFlow.setText((netFlow >= 0 ? "+$" : "-$") + formatter.format(Math.abs(netFlow)));
                 dvh.tvNetFlow.setTextColor(netFlow >= 0 ? Color.parseColor("#FF34D399") : Color.parseColor("#FFF87171"));
 
-                long dailyAvg = db.expense / 30;
-                dvh.tvAvgPerDay.setText("$" + formatter.format(dailyAvg));
+                // 2. 🔥 ÉP HIỂN THỊ THÔNG SỐ TOÀN BỘ HỆ THỐNG (ALL-TIME) VÀO MỤC PHỤ
+                // Tận dụng các trường có sẵn để gán dữ liệu tổng lịch sử siêu tối ưu
+                long allTimeNet = db.allTimeIncome - db.allTimeExpense;
+                dvh.tvAvgPerDay.setText("Inc: $" + formatter.format(db.allTimeIncome)); // Tổng Thu All-time
+                dvh.tvBurnRate.setText("Exp: $" + formatter.format(db.allTimeExpense));   // Tổng Chi All-time
 
-                long burnRate = db.income > 0 ? (db.expense * 100 / db.income) : 0;
-                dvh.tvBurnRate.setText(burnRate + "%");
-
-                dvh.tvSaved.setText("$" + formatter.format(Math.abs(netFlow)));
-                dvh.tvSaved.setTextColor(netFlow >= 0 ? Color.parseColor("#FF34D399") : Color.parseColor("#FF9CA3AF"));
+                dvh.tvSaved.setText("Net: " + (allTimeNet >= 0 ? "+$" : "-$") + formatter.format(Math.abs(allTimeNet)));
+                dvh.tvSaved.setTextColor(allTimeNet >= 0 ? Color.parseColor("#FF34D399") : Color.parseColor("#FFF87171"));
 
             } else if (holder instanceof DateHeaderVH) {
                 DateHeaderVH hvh = (DateHeaderVH) holder;
@@ -356,7 +374,6 @@ public class ManageFragment extends Fragment {
 
                 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.US);
                 tvh.tvDate.setText(timeFormat.format(new Date(t.getDate())));
-
                 tvh.tvIcon.setText(getEmojiForCategory(t.getCategoryName() != null ? t.getCategoryName() : t.getTitle()));
 
                 if (t.isExpense()) {
@@ -374,11 +391,18 @@ public class ManageFragment extends Fragment {
         private void showOptionsDialog(TransactionItem item) {
             if (getContext() == null) return;
 
+            // 🔥 KHÓA FIX CHÍ MẠNG: Bóc tách chính xác mốc thời gian từ item được chọn
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(item.getDate());
+            String targetMonth = String.format(Locale.US, "%02d", cal.get(Calendar.MONTH) + 1);
+            String targetYear = String.valueOf(cal.get(Calendar.YEAR));
+
             new AlertDialog.Builder(getContext(), android.R.style.Theme_DeviceDefault_Dialog_Alert)
                     .setTitle("Manage Transaction")
                     .setMessage("Do you want to delete \"" + item.getTitle() + "\"?")
                     .setPositiveButton("DELETE", (dialog, which) -> {
-                        viewModel.deleteTransaction(item, currentMonthStr, currentYearStr);
+                        // Gọi lệnh xóa truyền mốc thời gian cô lập của chính item đó, triệt tiêu 100% bug chuyển tháng bừa bãi
+                        viewModel.deleteTransaction(item, targetMonth, targetYear);
                         Toast.makeText(getContext(), "Transaction Deleted", Toast.LENGTH_SHORT).show();
                     })
                     .setNegativeButton("CANCEL", null)
@@ -436,7 +460,13 @@ public class ManageFragment extends Fragment {
 
     private static class DashboardItem {
         long income, expense;
-        DashboardItem(long i, long e) { this.income = i; this.expense = e; }
+        long allTimeIncome, allTimeExpense; // Mở rộng lưu trữ All-Time
+        DashboardItem(long i, long e, long ai, long ae) {
+            this.income = i;
+            this.expense = e;
+            this.allTimeIncome = ai;
+            this.allTimeExpense = ae;
+        }
     }
 
     private static class DateHeaderItem {
